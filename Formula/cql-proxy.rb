@@ -12,7 +12,8 @@ class CqlProxy < Formula
   end
 
   test do
-    exec("touch secure.txt")
-    assert_match "unable to open", shell_output("cql-proxy -b secure.txt --bind 127.0.0.1 2>&1")
+    touch "secure.txt"
+    output = shell_output("cql-proxy -b secure.txt --bind 127.0.0.1 2>&1", 1)
+    assert_match "unable to open", output
   end
 end
